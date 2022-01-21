@@ -41,8 +41,7 @@ acl {
 
 {% if nomad_vault_enabled is sameas true %}
 vault {
-    enabled          = true
-    address          = "{{ nomad_vault_url }}"
-    create_from_role = "{{ nomad_vault_role }}"
+    enabled = true
+    address = "{{ nomad_vault_url }}"
 }
 {% endif %}

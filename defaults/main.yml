@@ -23,7 +23,6 @@ nomad_acl_enabled: no
 # Vault integration settings
 nomad_vault_enabled: no
 nomad_vault_url: http://vault.service.consul:8200
-nomad_vault_role: nomad-cluster
 
 # Configuration for server nodes
 nomad_server: no
@@ -34,6 +33,3 @@ nomad_client: no
 nomad_client_node_class: worker
 nomad_client_host_volumes: []
 nomad_client_host_networks: []
-
-# Docker driver configuration
-nomad_docker_auth_enabled: no

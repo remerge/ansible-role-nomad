@@ -102,18 +102,6 @@
   notify:
     - restart nomad
 
-- name: copy docker registy auth
-  ansible.builtin.copy:
-    src: "{{ nomad_docker_auth_file }}"
-    dest: "{{ nomad_config_dir }}/docker.auth"
-    mode: "0644"
-    owner: root
-    group: root
-  notify:
-    - restart nomad
-  when:
-    - nomad_docker_auth_enabled | bool
-
 - name: start nomad
   ansible.builtin.service:
     name: nomad
