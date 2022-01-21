@@ -95,16 +95,7 @@
 - name: test if nomad_server_bootstrap_expect is set correctly
   ansible.builtin.assert:
     that:
-      - nomad_server_bootstrap_expect is defined
-      - nomad_server_bootstrap_expect is number
-    quiet: yes
-  when:
-    - nomad_server | bool
-
-- name: test if nomad_server_bootstrap_expect is set correctly
-  ansible.builtin.assert:
-    that:
-      - nomad_server_bootstrap_expect is not divisibleby 2
+      - nomad_server_bootstrap_expect | int is not divisibleby 2
     fail_msg: "This parameter should be odd, it's even."
     quiet: yes
   when:
