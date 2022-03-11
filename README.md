@@ -47,28 +47,34 @@ The default values for the variables are set in `defaults/main.yml`:
 # nomad manually, set this to `no`.
 nomad_install_package: yes
 
-# Set this to "yes" for a server.
-nomad_server: yes
+# Common configuration
+nomad_name: "{{ inventory_hostname_short }}"
+nomad_region: global
+nomad_datacenter: dc1
 
-# Configuration items for the Nomad server
-nomad_server_data_dir: /tmp/server
-nomad_server_bind_addr: "0.0.0.0"
-nomad_server_log_level: INFO
+nomad_config_dir: /etc/nomad.d
+nomad_data_dir: /opt/nomad/data
+nomad_log_level: INFO
 
-# How many servers and agents are expected?
+nomad_bind_addr: "0.0.0.0"
+nomad_advertise_addr: "{{ ansible_default_ipv4.address }}"
+
+# ACL settings
+nomad_acl_enabled: no
+
+# Vault integration settings
+nomad_vault_enabled: no
+nomad_vault_url: http://vault.service.consul:8200
+
+# Configuration for server nodes
+nomad_server: no
 nomad_server_bootstrap_expect: 1
 
-# This this to "yes" for an agent.
-nomad_agent: no
-
-# Configuration items for the Nomad agent
-nomad_agent_log_level: INFO
-nomad_agent_data_dir: /tmp/agent
-nomad_agent_name: "{{ inventory_hostname }}"
-
-nomad_agent_servers:
-  - name: "127.0.0.1"
-    port: 4647
+# Configuration for client nodes
+nomad_client: no
+nomad_client_node_class: worker
+nomad_client_host_volumes: []
+nomad_client_host_networks: []
 ```
 
 ## [Requirements](#requirements)
@@ -108,6 +114,7 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
+
 
 
 If you find issues, please register them in [GitHub](https://github.com/robertdebock/ansible-role-nomad/issues)
