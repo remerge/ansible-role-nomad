@@ -1,0 +1,43 @@
+{{ ansible_managed | comment }}
+
+client {
+  enabled = true
+  node_class = "{{ nomad_client_node_class }}"
+
+  no_host_uuid = true
+  max_kill_timeout = "30s"
+
+{% if nomad_client_network_interface is defined %}
+  network_interface = "{{ nomad_client_network_interface }}"
+{% endif %}
+
+{% for nomad_client_host_volume in nomad_client_host_volumes %}
+  host_volume "{{ nomad_client_host_volume['name'] }}" {
+    path = "{{ nomad_client_host_volume['path'] }}"
+    read_only = {{ nomad_client_host_volume['read_only'] | bool | lower }}
+  }
+{% endfor %}
+
+{% for nomad_client_host_network in nomad_client_host_networks %}
+  host_network "{{ nomad_client_host_network['name'] }}" {
+    cidr = "{{ nomad_client_host_network['cidr'] }}"
+    interface = "{{ nomad_client_host_network['interface'] }}"
+    reserved_ports = "{{ nomad_client_host_network['reserved_ports'] }}"
+  }
+{% endfor %}
+}
+
+plugin "docker" {
+  config {
+    allow_privileged = true
+    volumes {
+      enabled = true
+    }
+  }
+}
+
+plugin "raw_exec" {
+  config {
+    enabled = true
+  }
+}
