@@ -3,6 +3,7 @@
 client {
   enabled = true
   node_class = "{{ nomad_client_node_class }}"
+  alloc_dir = "/nomad/alloc/"
 
   no_host_uuid = true
   max_kill_timeout = "30s"
@@ -29,6 +30,11 @@ client {
 
 plugin "docker" {
   config {
+    {% if nomad_docker_auth_enabled is defined and nomad_docker_auth_enabled is sameas true %}
+      auth {
+        config = "{{ nomad_docker_auth_file }}"
+      }
+    {% endif %}
     allow_privileged = true
     volumes {
       enabled = true

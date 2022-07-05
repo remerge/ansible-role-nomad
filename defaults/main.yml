@@ -33,3 +33,5 @@ nomad_client: no
 nomad_client_node_class: worker
 nomad_client_host_volumes: []
 nomad_client_host_networks: []
+nomad_docker_auth_enabled: false
+nomad_docker_auth_file: /root/.docker/config.json
