@@ -1,6 +1,6 @@
 ---
 # Changes here will be overwritten by Copier
-_commit: v0.7.7
+_commit: v0.8.0
 _src_path: https://github.com/remerge/template.git
 google_cloud_project: ansible-role-nomad-[random_id]
 google_cloud_region: europe-west4
