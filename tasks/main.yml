@@ -1,19 +1,19 @@
 ---
 # tasks file for nomad
 
-- name: import assert.yml
+- name: Import assert.yml
   ansible.builtin.import_tasks: assert.yml
   run_once: yes
   delegate_to: localhost
 
-- name: install nomad
+- name: Install nomad
   ansible.builtin.package:
     name: nomad
     state: present
   when:
     - nomad_install_package
 
-- name: create nomad_config_dir
+- name: Create nomad_config_dir
   ansible.builtin.file:
     path: "{{ nomad_config_dir }}"
     state: directory
@@ -21,7 +21,7 @@
     owner: nomad
     group: nomad
 
-- name: create nomad_data_dir
+- name: Create nomad_data_dir
   ansible.builtin.file:
     path: "{{ nomad_data_dir }}"
     state: directory
@@ -29,7 +29,7 @@
     owner: nomad
     group: nomad
 
-- name: configure nomad
+- name: Configure nomad
   ansible.builtin.template:
     src: nomad.hcl.j2
     dest: "{{ nomad_config_dir }}/nomad.hcl"
@@ -37,9 +37,9 @@
     owner: nomad
     group: nomad
   notify:
-    - restart nomad
+    - Restart nomad
 
-- name: configure nomad environment
+- name: Configure nomad environment
   ansible.builtin.template:
     src: nomad.env.j2
     dest: "{{ nomad_config_dir }}/nomad.env"
@@ -47,18 +47,18 @@
     owner: nomad
     group: nomad
   notify:
-    - restart nomad
+    - Restart nomad
 
-- name: delete server config if it is not defined
+- name: Delete server config if it is not defined
   ansible.builtin.file:
     path: "{{ nomad_config_dir }}/server.hcl"
     state: absent
   when:
     - not nomad_server
   notify:
-    - restart nomad
+    - Restart nomad
 
-- name: configure nomad server
+- name: Configure nomad server
   ansible.builtin.template:
     src: server.hcl.j2
     dest: "{{ nomad_config_dir }}/server.hcl"
@@ -66,20 +66,20 @@
     owner: nomad
     group: nomad
   notify:
-    - restart nomad
+    - Restart nomad
   when:
-    - nomad_server | bool
+    - nomad_server
 
-- name: delete client config if it is not defined
+- name: Delete client config if it is not defined
   ansible.builtin.file:
     path: "{{ nomad_config_dir }}/client.hcl"
     state: absent
   when:
     - not nomad_client
   notify:
-    - restart nomad
+    - Restart nomad
 
-- name: configure nomad client
+- name: Configure nomad client
   ansible.builtin.template:
     src: client.hcl.j2
     dest: "{{ nomad_config_dir }}/client.hcl"
@@ -87,11 +87,11 @@
     owner: nomad
     group: nomad
   notify:
-    - restart nomad
+    - Restart nomad
   when:
-    - nomad_client | bool
+    - nomad_client
 
-- name: create host volumes
+- name: Create host volumes
   ansible.builtin.file:
     path: "{{ item.path }}"
     mode: "{{ item.mode | default('0755') }}"
@@ -100,9 +100,9 @@
     state: directory
   loop: "{{ nomad_client_host_volumes }}"
   notify:
-    - restart nomad
+    - Restart nomad
 
-- name: start nomad
+- name: Start nomad
   ansible.builtin.service:
     name: nomad
     state: started
