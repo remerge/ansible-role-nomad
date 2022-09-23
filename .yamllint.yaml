@@ -1,0 +1,11 @@
+---
+extends: default
+
+ignore: |
+  .copier-answers.yml
+
+rules:
+  comments:
+    min-spaces-from-content: 1
+  line-length: disable
+  truthy: disable
