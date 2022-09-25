@@ -64,11 +64,11 @@ update:: copier-update
 ## pre-commit
 
 .git/hooks/pre-commit:
-	pre-commit install
+	make pre-commit-install
 
 .PHONY: pre-commit-install
 pre-commit-install: ## install pre-commit hook
-	pre-commit install
+	pre-commit install -t pre-commit -t prepare-commit-msg -t commit-msg
 install:: pre-commit-install
 
 .PHONY: pre-commit-update

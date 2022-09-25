@@ -1,7 +1,8 @@
 ---
 # Changes here will be overwritten by Copier
-_commit: v0.8.0
+_commit: v0.9.2
 _src_path: https://github.com/remerge/template.git
+google_cloud_gke_master_subnet: null
 google_cloud_project: ansible-role-nomad-[random_id]
 google_cloud_region: europe-west4
 google_cloud_zone: europe-west4-a
@@ -11,6 +12,7 @@ project_owner: sre
 use_ansible: false
 use_google_cloud_compute: false
 use_google_cloud_dns: false
+use_google_cloud_gke: false
 use_google_cloud_public_dns: false
 use_python: true
 use_terraform: false
