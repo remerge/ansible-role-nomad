@@ -91,47 +91,10 @@
       - nomad_server is boolean
     quiet: yes
 
-- name: Test if nomad_server_bind_addr is set correctly
-  ansible.builtin.assert:
-    that:
-      - nomad_server_bind_addr is defined
-      - nomad_server_bind_addr is string
-    quiet: yes
-  when:
-    - nomad_server
-
-- name: Test if nomad_server_log_level is set correctly
-  ansible.builtin.assert:
-    that:
-      - nomad_server_log_level is defined
-      - nomad_server_log_level is string
-      - nomad_server_log_level in [ "DEBUG", "INFO", "WARN" ]
-    quiet: yes
-  when:
-    - nomad_server
-
-- name: Test if nomad_server_data_dir is set correctly
-  ansible.builtin.assert:
-    that:
-      - nomad_server_data_dir is defined
-      - nomad_server_data_dir is string
-    quiet: yes
-  when:
-    - nomad_server
-
-- name: Test if nomad_server_bootstrap_expect is set correctly
-  ansible.builtin.assert:
-    that:
-      - nomad_server_bootstrap_expect is defined
-      - nomad_server_bootstrap_expect is number
-    quiet: yes
-  when:
-    - nomad_server
-
 - name: Test if nomad_server_bootstrap_expect is odd
   ansible.builtin.assert:
     that:
-      - nomad_server_bootstrap_expect is not divisibleby 2
+      - nomad_server_bootstrap_expect | int is not divisibleby 2
     fail_msg: "This parameter should be odd, it's even."
     quiet: yes
   when:
