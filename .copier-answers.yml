@@ -1,6 +1,6 @@
 ---
 # Changes here will be overwritten by Copier
-_commit: v0.9.2
+_commit: v0.9.6
 _src_path: https://github.com/remerge/template.git
 google_cloud_gke_master_subnet: null
 google_cloud_project: ansible-role-nomad-[random_id]
@@ -10,10 +10,12 @@ project_id: ansible-role-nomad
 project_name: Ansible Role for Nomad
 project_owner: sre
 use_ansible: false
+use_consul: false
 use_google_cloud_compute: false
 use_google_cloud_dns: false
 use_google_cloud_gke: false
 use_google_cloud_public_dns: false
+use_nomad: false
 use_python: true
 use_terraform: false
 use_terraform_google: false
