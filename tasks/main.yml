@@ -102,6 +102,9 @@
   notify:
     - Restart nomad
 
+- name: Flush handlers
+  meta: flush_handlers
+
 - name: Start nomad
   ansible.builtin.service:
     name: nomad
