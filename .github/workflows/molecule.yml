@@ -1,29 +1,15 @@
 ---
-#
-# Ansible managed
-#
-
-name: Ansible Molecule
+name: molecule
 
 on:
-  push:
-    tags-ignore:
-      - "*"
   pull_request:
+  push:
+    branches: [main]
   schedule:
     - cron: "27 14 14 * *"
 
 jobs:
-  lint:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: checkout
-        uses: actions/checkout@v3
-      - name: ansible-lint
-        uses: ansible-community/ansible-lint-action@main
   test:
-    needs:
-      - lint
     runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
@@ -31,27 +17,13 @@ jobs:
         config:
           - image: "enterpriselinux"
             tag: "8"
-          - image: "debian"
-            tag: "latest"
-          - image: "fedora"
-            tag: "35"
           - image: "fedora"
             tag: "latest"
-          - image: "ubuntu"
-            tag: "latest"
-          - image: "ubuntu"
-            tag: "focal"
-          - image: "ubuntu"
-            tag: "bionic"
     steps:
       - name: checkout
         uses: actions/checkout@v3
         with:
           path: "${{ github.repository }}"
-      - name: disable apparmor for mysql
-        run: sudo ln -s /etc/apparmor.d/usr.sbin.mysqld /etc/apparmor.d/disable/
-      - name: parse apparmor for mysql
-        run: sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
       - name: molecule
         uses: robertdebock/molecule-action@4.0.8
         with:

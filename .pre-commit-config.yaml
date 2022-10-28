@@ -30,7 +30,7 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: "v3.0.0-alpha.1"
+    rev: "v3.0.0-alpha.4"
     hooks:
       - id: prettier
         exclude: "^project/"
@@ -62,6 +62,23 @@ repos:
     hooks:
       - id: actionlint
 
+  - repo: https://github.com/ansible/ansible-lint
+    rev: "v6.8.4"
+    hooks:
+      - id: ansible-lint
+        name: ansible-lint
+
+  - repo: https://github.com/robertdebock/pre-commit
+    rev: "v1.5.2"
+    hooks:
+      - id: ansible_role_find_empty_directories
+      - id: ansible_role_find_empty_files
+      - id: ansible_role_find_horizontal_when
+      - id: ansible_role_find_undefined_handlers
+      - id: ansible_role_find_unquoted_values
+      - id: ansible_role_find_unused_variable
+      - id: ansible_role_fix_readability
+
   - repo: https://github.com/jorisroovers/gitlint
     rev: "v0.17.0"
     hooks:
@@ -72,14 +89,3 @@ repos:
     hooks:
       - id: auto-smart-commit
         name: auto-smart-commit
-
-  - repo: https://github.com/robertdebock/pre-commit
-    rev: v1.5.2
-    hooks:
-      - id: ansible_role_find_unused_variable
-      - id: ansible_role_find_empty_files
-      - id: ansible_role_find_empty_directories
-      - id: ansible_role_fix_readability
-      - id: ansible_role_find_undefined_handlers
-      - id: ansible_role_find_unquoted_values
-      - id: ansible_role_find_horizontal_when
