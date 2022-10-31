@@ -22,7 +22,7 @@ nomad_acl_enabled: no
 
 # Vault integration settings
 nomad_vault_enabled: no
-nomad_vault_url: http://vault.service.consul:8200
+nomad_vault_url: "http://vault.service.consul:8200"
 
 # Configuration for server nodes
 nomad_server: no

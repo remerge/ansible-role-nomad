@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "ansible-role-nomad"
+version = "0.0.0"
+description = "Ansible Role for Nomad"
+authors = ["Remerge GmbH <sre@remerge.io>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.dev-dependencies]
+black = "^22.6.0"
+flake8 = "^4.0.1"
+flake8-bugbear = "^22.7.1"
+pylint = "^2.14.5"
+
+[tool.poetry.group.dev.dependencies]
+molecule = {extras = ["docker"], version = "^4.0.1"}
+tox = "^3.26.0"
+ansible-lint = "^6.6.1"
+docker = "^6.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
