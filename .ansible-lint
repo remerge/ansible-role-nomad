@@ -1,13 +1,17 @@
 ---
-#
-# Ansible managed
-#
 exclude_paths:
-  - ./molecule/default/prepare.yml
-  - ./molecule/default/converge.yml
-  - ./molecule/default/verify.yml
-  - ./molecule/default/collections.yml
-  - ./.tox
-  - ./.cache
-  - ./.github
-  - ./requirements.yml
+  - .ansible/ansible_collections
+  - .ansible/roles
+  - .cache
+  - .github
+  - .tox
+  - meta/preferences.yml
+  - molecule/default/collections.yml
+  - molecule/default/converge.yml
+  - molecule/default/defaults.yml
+  - molecule/default/prepare.yml
+  - molecule/default/verify.yml
+  - requirements.yml
+
+skip_list:
+  - template-instead-of-copy
