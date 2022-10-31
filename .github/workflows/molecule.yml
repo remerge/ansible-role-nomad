@@ -18,6 +18,8 @@ jobs:
           - image: "enterpriselinux"
             tag: "8"
           - image: "fedora"
+            tag: "35"
+          - image: "fedora"
             tag: "latest"
     steps:
       - name: checkout
