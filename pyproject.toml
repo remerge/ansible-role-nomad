@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ansible-role-nomad"
-version = "0.0.0"
+version = "2.3.1"
 description = "Install and configure Nomad with Ansible."
 authors = ["Remerge GmbH <sre@remerge.io>"]
 
