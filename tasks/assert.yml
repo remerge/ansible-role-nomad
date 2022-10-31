@@ -134,7 +134,7 @@
   when:
     - nomad_client
 
-- name: test if nomad_docker_auth_file is set correctly
+- name: Test if nomad_docker_auth_file is set correctly
   ansible.builtin.assert:
     that:
       - nomad_docker_auth_file is defined
