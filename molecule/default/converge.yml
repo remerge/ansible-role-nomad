@@ -6,3 +6,5 @@
 
   roles:
     - role: remerge.nomad
+      nomad_server: true
+      nomad_client: true
