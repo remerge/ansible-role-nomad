@@ -3,7 +3,7 @@
 
 # You can install nomad using a package in this role. If you have installed
 # nomad manually, set this to `no`.
-nomad_install_package: yes
+nomad_install_package: true
 
 # Common configuration
 nomad_name: "{{ inventory_hostname_short }}"
@@ -18,18 +18,18 @@ nomad_bind_addr: "0.0.0.0"
 nomad_advertise_addr: "{{ ansible_default_ipv4.address }}"
 
 # ACL settings
-nomad_acl_enabled: no
+nomad_acl_enabled: false
 
 # Vault integration settings
-nomad_vault_enabled: no
+nomad_vault_enabled: false
 nomad_vault_url: "http://vault.service.consul:8200"
 
 # Configuration for server nodes
-nomad_server: no
+nomad_server: false
 nomad_server_bootstrap_expect: 1
 
 # Configuration for client nodes
-nomad_client: no
+nomad_client: false
 nomad_client_node_class: worker
 nomad_client_host_volumes: []
 nomad_client_host_networks: []

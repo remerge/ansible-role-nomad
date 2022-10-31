@@ -4,42 +4,42 @@
     that:
       - nomad_install_package is defined
       - nomad_install_package is boolean
-    quiet: yes
+    quiet: true
 
 - name: Test if nomad_name is set correctly
   ansible.builtin.assert:
     that:
       - nomad_name is defined
       - nomad_name is string
-    quiet: yes
+    quiet: true
 
 - name: Test if nomad_region is set correctly
   ansible.builtin.assert:
     that:
       - nomad_region is defined
       - nomad_region is string
-    quiet: yes
+    quiet: true
 
 - name: Test if nomad_datacenter is set correctly
   ansible.builtin.assert:
     that:
       - nomad_datacenter is defined
       - nomad_datacenter is string
-    quiet: yes
+    quiet: true
 
 - name: Test if nomad_config_dir is set correctly
   ansible.builtin.assert:
     that:
       - nomad_config_dir is defined
       - nomad_config_dir is string
-    quiet: yes
+    quiet: true
 
 - name: Test if nomad_data_dir is set correctly
   ansible.builtin.assert:
     that:
       - nomad_data_dir is defined
       - nomad_data_dir is string
-    quiet: yes
+    quiet: true
 
 - name: Test if nomad_log_level is set correctly
   ansible.builtin.assert:
@@ -47,56 +47,56 @@
       - nomad_log_level is defined
       - nomad_log_level is string
       - nomad_log_level in [ "DEBUG", "INFO", "WARN" ]
-    quiet: yes
+    quiet: true
 
 - name: Test if nomad_bind_addr is set correctly
   ansible.builtin.assert:
     that:
       - nomad_bind_addr is defined
       - nomad_bind_addr is string
-    quiet: yes
+    quiet: true
 
 - name: Test if nomad_advertise_addr is set correctly
   ansible.builtin.assert:
     that:
       - nomad_advertise_addr is defined
       - nomad_advertise_addr is string
-    quiet: yes
+    quiet: true
 
 - name: Test if nomad_acl_enabled is set correctly
   ansible.builtin.assert:
     that:
       - nomad_acl_enabled is defined
       - nomad_acl_enabled is boolean
-    quiet: yes
+    quiet: true
 
 - name: Test if nomad_vault_enabled is set correctly
   ansible.builtin.assert:
     that:
       - nomad_vault_enabled is defined
       - nomad_vault_enabled is boolean
-    quiet: yes
+    quiet: true
 
 - name: Test if nomad_vault_url is set correctly
   ansible.builtin.assert:
     that:
       - nomad_vault_url is defined
       - nomad_vault_url is string
-    quiet: yes
+    quiet: true
 
 - name: Test if nomad_server is set correctly
   ansible.builtin.assert:
     that:
       - nomad_server is defined
       - nomad_server is boolean
-    quiet: yes
+    quiet: true
 
 - name: Test if nomad_server_bootstrap_expect is odd
   ansible.builtin.assert:
     that:
       - nomad_server_bootstrap_expect | int is not divisibleby 2
     fail_msg: "This parameter should be odd, it's even."
-    quiet: yes
+    quiet: true
   when:
     - nomad_server
 
@@ -105,14 +105,14 @@
     that:
       - nomad_client is defined
       - nomad_client is boolean
-    quiet: yes
+    quiet: true
 
 - name: Test if nomad_client_node_class is set correctly
   ansible.builtin.assert:
     that:
       - nomad_client_node_class is defined
       - nomad_client_node_class is string
-    quiet: yes
+    quiet: true
   when:
     - nomad_client
 
@@ -121,7 +121,7 @@
     that:
       - nomad_client_host_volumes is defined
       - nomad_client_host_volumes is iterable
-    quiet: yes
+    quiet: true
   when:
     - nomad_client
 
@@ -130,14 +130,13 @@
     that:
       - nomad_client_host_networks is defined
       - nomad_client_host_networks is iterable
-    quiet: yes
+    quiet: true
   when:
-    - nomad_client | bool
+    - nomad_client
 
 - name: test if nomad_docker_auth_file is set correctly
   ansible.builtin.assert:
     that:
       - nomad_docker_auth_file is defined
   when:
-    - nomad_docker_auth_enabled | bool
-
+    - nomad_docker_auth_enabled

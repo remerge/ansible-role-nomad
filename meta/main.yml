@@ -1,26 +1,20 @@
 ---
 galaxy_info:
-  author: robertdebock
+  author: remerge
   role_name: nomad
-  description: Install and configure Nomad.
-  license: Apache-2.0
-  company: none
+  description: Install and configure Nomad with Ansible.
+  license: apache-2.0
+  company: remerge.io
   min_ansible_version: "2.10"
 
   platforms:
     - name: EL
       versions:
         - "8"
-    - name: Debian
-      versions:
-        - bullseye
     - name: Fedora
       versions:
         - "35"
         - "36"
-    - name: Ubuntu
-      versions:
-        - all
 
   galaxy_tags:
     - hashicorp
@@ -28,5 +22,3 @@ galaxy_info:
     - server
     - agent
     - cluster
-
-dependencies: []
