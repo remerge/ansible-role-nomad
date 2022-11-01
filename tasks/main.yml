@@ -79,7 +79,14 @@
   notify:
     - Restart nomad
 
-- name: Configure nomad client
+- name: Store docker auth config
+  ansible.builtin.copy:
+    content: "{{ nomad_docker_auth_config }}"
+    dest: "{{ nomad_docker_auth_file }}"
+  when:
+    - nomad_docker_auth_enabled
+
+- name: configure nomad client
   ansible.builtin.template:
     src: client.hcl.j2
     dest: "{{ nomad_config_dir }}/client.hcl"
