@@ -138,12 +138,14 @@
   ansible.builtin.assert:
     that:
       - nomad_docker_auth_enabled is boolean
+    quiet: true
 
 - name: Test if nomad_docker_auth_config is set correctly
   ansible.builtin.assert:
     that:
       - nomad_docker_auth_config is defined
       - nomad_docker_auth_config is string
+    quiet: true
   when:
     - nomad_docker_auth_enabled
 
@@ -152,5 +154,6 @@
     that:
       - nomad_docker_auth_file is defined
       - nomad_docker_auth_file is string
+    quiet: true
   when:
     - nomad_docker_auth_enabled
