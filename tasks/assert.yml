@@ -145,3 +145,10 @@
       - nomad_docker_auth_config is defined
   when:
     - nomad_docker_auth_enabled
+
+- name: Test if nomad_docker_auth_file is set correctly
+  ansible.builtin.assert:
+    that:
+      - nomad_docker_auth_file is defined
+  when:
+    - nomad_docker_auth_enabled
