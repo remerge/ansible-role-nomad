@@ -93,7 +93,7 @@
   when:
     - nomad_docker_auth_enabled
 
-- name: configure nomad client
+- name: Configure nomad client
   ansible.builtin.template:
     src: client.hcl.j2
     dest: "{{ nomad_config_dir }}/client.hcl"
