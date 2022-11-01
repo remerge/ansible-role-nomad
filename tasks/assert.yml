@@ -143,6 +143,7 @@
   ansible.builtin.assert:
     that:
       - nomad_docker_auth_config is defined
+      - nomad_docker_auth_config is string
   when:
     - nomad_docker_auth_enabled
 
@@ -150,5 +151,6 @@
   ansible.builtin.assert:
     that:
       - nomad_docker_auth_file is defined
+      - nomad_docker_auth_file is string
   when:
     - nomad_docker_auth_enabled
