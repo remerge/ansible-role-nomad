@@ -86,13 +86,6 @@
   when:
     - nomad_docker_auth_enabled
 
-- name: Store docker auth config
-  ansible.builtin.copy:
-    content: "{{ nomad_docker_auth_config }}"
-    dest: "{{ nomad_docker_auth_file }}"
-  when:
-    - nomad_docker_auth_enabled
-
 - name: Configure nomad client
   ansible.builtin.template:
     src: client.hcl.j2
