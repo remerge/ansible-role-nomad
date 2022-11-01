@@ -29,11 +29,11 @@ client {
 
 plugin "docker" {
   config {
-  {% if nomad_docker_auth_enabled is sameas true %}
-      auth {
-        config = "{{ nomad_docker_auth_file }}"
-      }
-    {% endif %}
+{% if nomad_docker_auth_enabled is sameas true %}
+    auth {
+      config = "{{ nomad_docker_auth_file }}"
+    }
+{% endif %}
     allow_privileged = true
     volumes {
       enabled = true
