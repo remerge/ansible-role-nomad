@@ -29,7 +29,7 @@ client {
 
 plugin "docker" {
   config {
-    {% if nomad_docker_auth_enabled is sameas true %}
+  {% if nomad_docker_auth_enabled is sameas true %}
       auth {
         config = "{{ nomad_docker_auth_file }}"
       }
