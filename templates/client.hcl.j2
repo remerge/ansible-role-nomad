@@ -41,6 +41,8 @@ plugin "docker" {
       config = "{{ nomad_docker_auth_file }}"
     }
 {% endif %}
+
+    extra_labels = ["job_name", "job_id", "task_group_name", "task_name", "namespace", "node_name", "node_id"]
     allow_privileged = true
     volumes {
       enabled = true
