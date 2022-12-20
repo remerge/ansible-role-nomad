@@ -101,17 +101,6 @@
   when:
     - nomad_client
 
-- name: Create host volumes
-  ansible.builtin.file:
-    path: "{{ item.path }}"
-    owner: "{{ item.owner | default('nomad') }}"
-    group: "{{ item.group | default('nomad') }}"
-    mode: "{{ item.mode | default('0755') }}"
-    state: directory
-  loop: "{{ nomad_client_host_volumes }}"
-  notify:
-    - Restart nomad
-
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
 
