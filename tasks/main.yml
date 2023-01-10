@@ -79,6 +79,14 @@
   notify:
     - Restart nomad
 
+- name: Create docker dir
+  ansible.builtin.file:
+    path: /root/.docker
+    state: directory
+    owner: root
+    group: root
+    mode: 0750
+
 - name: Store docker auth config
   ansible.builtin.copy:
     content: "{{ nomad_docker_auth_config }}"
