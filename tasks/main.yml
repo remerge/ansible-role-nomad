@@ -81,7 +81,7 @@
 
 - name: Create docker dir
   ansible.builtin.file:
-    path: /root/.docker
+    path: "{{ nomad_docker_auth_file | dirname }}"
     state: directory
     owner: root
     group: root
