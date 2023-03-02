@@ -33,5 +33,6 @@ nomad_client: false
 nomad_client_node_class: worker
 nomad_client_host_volumes: []
 nomad_client_host_networks: []
+nomad_client_max_kill_timeout: 5m
 nomad_docker_auth_enabled: false
 nomad_docker_auth_file: /root/.docker/config.json

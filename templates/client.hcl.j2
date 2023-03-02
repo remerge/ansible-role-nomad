@@ -5,7 +5,7 @@ client {
   node_class = "{{ nomad_client_node_class }}"
 
   no_host_uuid = true
-  max_kill_timeout = "30s"
+  max_kill_timeout = "{{ nomad_client_max_kill_timeout }}"
 
 {% if nomad_client_network_interface is defined %}
   network_interface = "{{ nomad_client_network_interface }}"
