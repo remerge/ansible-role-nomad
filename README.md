@@ -7,8 +7,9 @@ contribute to this repository.
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/default/converge.yml` and is tested on each
-push, pull request and release.
+This example is taken from
+[`molecule/default/converge.yml`](https://github.com/robertdebock/ansible-role-nomad/blob/master/molecule/default/converge.yml)
+and is tested on each push, pull request and release.
 
 ```yaml
 ---
@@ -22,7 +23,7 @@ push, pull request and release.
 ```
 
 The machine needs to be prepared. In CI this is done using
-`molecule/default/prepare.yml`:
+[`molecule/default/prepare.yml`](https://github.com/robertdebock/ansible-role-nomad/blob/master/molecule/default/prepare.yml):
 
 ```yaml
 ---
@@ -43,7 +44,7 @@ these roles.
 
 ## [Role Variables](#role-variables)
 
-The default values for the variables are set in `defaults/main.yml`:
+The default values for the variables are set in [`defaults/main.yml`](https://github.com/robertdebock/ansible-role-nomad/blob/master/defaults/main.yml):
 
 ```yaml
 ---
