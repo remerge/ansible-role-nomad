@@ -8,7 +8,7 @@
 
 - name: Install nomad
   ansible.builtin.package:
-    name: nomad
+    name: nomad-{{ nomad_version }}
     state: present
   when:
     - nomad_install_package
