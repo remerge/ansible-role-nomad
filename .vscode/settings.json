@@ -19,5 +19,6 @@
   "editor.formatOnSave": true,
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
-  "files.trimTrailingWhitespace": true
+  "files.trimTrailingWhitespace": true,
+  "ansible.python.interpreterPath": "/opt/homebrew/opt/python@3.11/bin/python3"
 }
