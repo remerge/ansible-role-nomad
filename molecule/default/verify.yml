@@ -5,32 +5,36 @@
   gather_facts: false
 
   tasks:
-    - name: check server members
+    - name: Check server members
       ansible.builtin.command:
         cmd: nomad server members
+      changed_when: false
 
-    - name: check node status
+    - name: Check node status
       ansible.builtin.command:
         cmd: nomad node status
+      changed_when: false
 
-    - name: initialize example job
+    - name: Initialize example job
       ansible.builtin.command:
         cmd: nomad init example.nomad
       args:
         creates: example.nomad
 
-    - name: run and stop example job
-      block:
-        - name: run example job
-          ansible.builtin.command:
-            cmd: nomad job run example.nomad
-
-        - name: stop example job
-          ansible.builtin.command:
-            cmd: nomad job stop example
+    - name: Run and stop example job
       when:
         - ansible_connection not in [ "container", "docker", "community.docker.docker" ]
+      block:
+        - name: Run example job
+          ansible.builtin.command:
+            cmd: nomad job run example.nomad
+          changed_when: false
 
-    - name: check the ui
+        - name: Stop example job
+          ansible.builtin.command:
+            cmd: nomad job stop example
+          changed_when: false
+
+    - name: Check the ui
       ansible.builtin.uri:
         url: "http://localhost:4646/ui/"
