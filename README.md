@@ -13,7 +13,7 @@ and is tested on each push, pull request and release.
 
 ```yaml
 ---
-- name: converge
+- name: Converge
   hosts: all
   become: true
   gather_facts: true
@@ -29,8 +29,8 @@ The machine needs to be prepared. In CI this is done using
 ---
 - name: Prepare
   hosts: all
-  gather_facts: false
   become: true
+  gather_facts: false
 
   roles:
     - role: robertdebock.bootstrap

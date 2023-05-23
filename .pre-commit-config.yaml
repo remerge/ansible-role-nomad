@@ -39,7 +39,7 @@ repos:
 
   # https://github.com/igorshubovych/markdownlint-cli/tags
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: "v0.33.0"
+    rev: "v0.34.0"
     hooks:
       - id: markdownlint-fix
         name: markdownlint
@@ -73,7 +73,7 @@ repos:
 
   # https://github.com/ansible/ansible-lint/tags
   - repo: https://github.com/ansible/ansible-lint
-    rev: "v6.15.0"
+    rev: "v6.16.2"
     hooks:
       - id: ansible-lint
         name: ansible-lint
@@ -95,7 +95,7 @@ repos:
 
   # https://github.com/bridgecrewio/checkov/tags
   - repo: https://github.com/bridgecrewio/checkov
-    rev: "2.3.224"
+    rev: "2.3.251"
     hooks:
       - id: checkov
         name: checkov
