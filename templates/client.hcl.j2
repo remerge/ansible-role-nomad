@@ -36,6 +36,18 @@ client {
 
 plugin "docker" {
   config {
+
+{% if nomad_docker_logging is defined %}
+  logging {
+    type = "{{ nomad_docker_logging['type'] }}"
+    config {
+      {% for key , value in nomad_docker_logging['config'].items() %}
+        {{ key }} = "{{ value }}"
+      {% endfor %}
+    }
+  }
+{% endif %}
+
 {% if nomad_docker_auth_enabled is sameas true %}
     auth {
       config = "{{ nomad_docker_auth_file }}"

@@ -157,3 +157,13 @@
     quiet: true
   when:
     - nomad_docker_auth_enabled
+
+- name: assert | Test if nomad_docker_logging is set correctly
+  ansible.builtin.assert:
+    that:
+      - nomad_docker_logging.type is defined
+      - nomad_docker_logging.config is defined
+      - nomad_docker_logging.config is iterable
+    quiet: true
+  when:
+    - nomad_docker_logging is defined
