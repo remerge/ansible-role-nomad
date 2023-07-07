@@ -42,7 +42,7 @@ plugin "docker" {
       type = "{{ nomad_docker_logging['type'] }}"
       config {
 {% for key , value in nomad_docker_logging['config'].items() %}
-          {{ key }} = "{{ value }}"
+        {{ key }} = "{{ value }}"
 {% endfor %}
       }
     }
