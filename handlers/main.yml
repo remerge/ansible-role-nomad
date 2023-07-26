@@ -2,8 +2,9 @@
 # handlers file for nomad
 
 - name: Restart nomad
-  ansible.builtin.service:
+  ansible.builtin.systemd:
     name: nomad
     state: restarted
+    daemon_reload: true
   when:
     - not ansible_check_mode
