@@ -28,7 +28,7 @@ client {
 {% if nomad_client_metadata is defined %}
   meta {
 {% for key , value in nomad_client_metadata.items() %}
-    {{ key }} = "{{ value }}"
+    {{ key }} = {{ value | string | to_json }}
 {% endfor %}
   }
 {% endif %}
@@ -42,7 +42,7 @@ plugin "docker" {
       type = "{{ nomad_docker_logging['type'] }}"
       config {
 {% for key , value in nomad_docker_logging['config'].items() %}
-        {{ key }} = "{{ value }}"
+        {{ key }} = {{ value | string | to_json }}
 {% endfor %}
       }
     }
