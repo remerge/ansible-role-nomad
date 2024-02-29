@@ -107,6 +107,34 @@
       - nomad_client is boolean
     quiet: true
 
+- name: assert | Test if nomad_sysbatch_scheduler_enabled is set correctly
+  ansible.builtin.assert:
+    that:
+      - nomad_sysbatch_scheduler_enabled is defined
+      - nomad_sysbatch_scheduler_enabled is boolean
+    quiet: true
+
+- name: assert | Test if nomad_service_scheduler_enabled is set correctly
+  ansible.builtin.assert:
+    that:
+      - nomad_service_scheduler_enabled is defined
+      - nomad_service_scheduler_enabled is boolean
+    quiet: true
+
+- name: assert | Test if nomad_scheduler_enabled is set correctly
+  ansible.builtin.assert:
+    that:
+      - nomad_scheduler_enabled is defined
+      - nomad_scheduler_enabled is boolean
+    quiet: true
+
+- name: assert | Test if nomad_batch_scheduler_enabled is set correctly
+  ansible.builtin.assert:
+    that:
+      - nomad_batch_scheduler_enabled is defined
+      - nomad_batch_scheduler_enabled is boolean
+    quiet: true
+
 - name: assert | Test if nomad_client_node_class is set correctly
   ansible.builtin.assert:
     that:
