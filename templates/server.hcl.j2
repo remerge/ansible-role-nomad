@@ -3,4 +3,13 @@
 server {
     enabled = true
     bootstrap_expect = {{ nomad_server_bootstrap_expect }}
+
+    default_scheduler_config {
+        preemption_config {
+            batch_scheduler_enabled    = {{ nomad_batch_scheduler_enabled }}
+            system_scheduler_enabled   = {{ nomad_scheduler_enabled }}
+            service_scheduler_enabled  = {{ nomad_service_scheduler_enabled }}
+            sysbatch_scheduler_enabled = {{ nomad_sysbatch_scheduler_enabled }}
+        }
+    }
 }

@@ -36,3 +36,8 @@ nomad_client_host_networks: []
 nomad_client_max_kill_timeout: 5m
 nomad_docker_auth_enabled: false
 nomad_docker_auth_file: /root/.docker/config.json
+
+nomad_batch_scheduler_enabled: true
+nomad_scheduler_enabled: true
+nomad_service_scheduler_enabled: true
+nomad_sysbatch_scheduler_enabled: true
