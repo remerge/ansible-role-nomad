@@ -6,7 +6,7 @@ server {
 
     default_scheduler_config {
         preemption_config {
-            batch_scheduler_enabled    = {{ nomad_batch_scheduler_enabled | string | lower}}
+            batch_scheduler_enabled    = {{ nomad_batch_scheduler_enabled | string | lower }}
             system_scheduler_enabled   = {{ nomad_scheduler_enabled | string | lower }}
             service_scheduler_enabled  = {{ nomad_service_scheduler_enabled | string | lower }}
             sysbatch_scheduler_enabled = {{ nomad_sysbatch_scheduler_enabled | string | lower }}
