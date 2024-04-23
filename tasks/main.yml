@@ -64,7 +64,7 @@
     dest: "{{ nomad_config_dir }}/nomad.env"
     owner: nomad
     group: nomad
-    mode: 0640
+    mode: 0644
   notify:
     - Restart nomad
 
