@@ -84,14 +84,14 @@
       - nomad_vault_url is string
     quiet: true
 
-- name: assert | Test if nomad_server is set correctly
+- name: assert | Test nomad_server
   ansible.builtin.assert:
     that:
       - nomad_server is defined
       - nomad_server is boolean
     quiet: true
 
-- name: assert | Test if nomad_server_bootstrap_expect is odd
+- name: assert | Test nomad_server_bootstrap_expect is odd
   ansible.builtin.assert:
     that:
       - nomad_server_bootstrap_expect | int is not divisibleby 2

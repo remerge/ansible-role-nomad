@@ -51,7 +51,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # defaults file for nomad
 
 # You can install nomad using a package in this role. If you have installed
-# nomad manually, set this to `no`.
+# nomad manually, set this to `false`.
 nomad_install_package: true
 
 # Common configuration
