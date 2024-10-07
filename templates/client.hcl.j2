@@ -25,6 +25,13 @@ client {
     reserved_ports = "{{ nomad_client_host_network['reserved_ports'] }}"
   }
 {% endfor %}
+{% if nomad_client_options is defined %}
+  options {
+{% for key , value in nomad_client_options.items() %}
+    {{ key }} = {{ value | string | to_json }}
+{% endfor %}
+  }
+{% endif %}
 {% if nomad_client_metadata is defined %}
   meta {
 {% for key , value in nomad_client_metadata.items() %}
