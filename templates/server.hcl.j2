@@ -3,6 +3,7 @@
 server {
     enabled = true
     bootstrap_expect = {{ nomad_server_bootstrap_expect }}
+    heartbeat_grace = "{{ nomad_heartbeat_grace }}"
 
     default_scheduler_config {
         preemption_config {
