@@ -20,7 +20,7 @@
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Override nomad.service
   ansible.builtin.copy:
@@ -29,7 +29,7 @@
       [Service]
       StandardOutput=null
       StandardError=null
-    mode: 0644
+    mode: "0644"
   notify:
     - Restart nomad
 
@@ -39,7 +39,7 @@
     state: directory
     owner: nomad
     group: nomad
-    mode: 0750
+    mode: "0750"
 
 - name: Create nomad_data_dir
   ansible.builtin.file:
@@ -47,7 +47,7 @@
     state: directory
     owner: nomad
     group: nomad
-    mode: 0755
+    mode: "0755"
 
 - name: Configure nomad
   ansible.builtin.template:
@@ -55,7 +55,7 @@
     dest: "{{ nomad_config_dir }}/nomad.hcl"
     owner: nomad
     group: nomad
-    mode: 0640
+    mode: "0640"
   notify:
     - Restart nomad
 
@@ -65,7 +65,7 @@
     dest: "{{ nomad_config_dir }}/nomad.env"
     owner: nomad
     group: nomad
-    mode: 0644
+    mode: "0644"
   notify:
     - Restart nomad
 
@@ -84,7 +84,7 @@
     dest: "{{ nomad_config_dir }}/server.hcl"
     owner: nomad
     group: nomad
-    mode: 0640
+    mode: "0640"
   notify:
     - Restart nomad
   when:
@@ -105,7 +105,7 @@
     state: directory
     owner: root
     group: root
-    mode: 0750
+    mode: "0750"
 
 - name: Store docker auth config
   ansible.builtin.copy:
@@ -113,7 +113,7 @@
     dest: "{{ nomad_docker_auth_file }}"
     owner: root
     group: root
-    mode: 0640
+    mode: "0640"
   when:
     - nomad_docker_auth_enabled
 
@@ -123,7 +123,7 @@
     dest: "{{ nomad_config_dir }}/client.hcl"
     owner: nomad
     group: nomad
-    mode: 0640
+    mode: "0640"
   notify:
     - Restart nomad
   when:
