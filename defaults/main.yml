@@ -15,7 +15,7 @@ nomad_data_dir: /opt/nomad/data
 nomad_log_level: INFO
 
 nomad_bind_addr: "0.0.0.0"
-nomad_advertise_addr: "{{ facts['default_ipv4'].address }}"
+nomad_advertise_addr: "{{ ansible_facts['default_ipv4']['address'] }}"
 
 # ACL settings
 nomad_acl_enabled: false
