@@ -35,6 +35,8 @@ nomad_vault_url: "http://vault.service.consul:8200"
 #     ttl: "1h"
 #     env: true
 #     file: false
+#     change_mode: "restart"     # default; or "signal" + change_signal
+#     change_signal: "SIGHUP"    # only used when change_mode = "signal"
 #
 # Leave as an empty map to keep the existing `vault {}` block unchanged.
 nomad_vault_default_identity: {}

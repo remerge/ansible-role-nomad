@@ -46,10 +46,14 @@ vault {
 {% if nomad_vault_default_identity | length > 0 %}
 
     default_identity {
-        aud  = {{ nomad_vault_default_identity.aud | to_json }}
-        ttl  = "{{ nomad_vault_default_identity.ttl | default('1h') }}"
-        env  = {{ nomad_vault_default_identity.env | default(true) | to_json }}
-        file = {{ nomad_vault_default_identity.file | default(false) | to_json }}
+        aud         = {{ nomad_vault_default_identity.aud | to_json }}
+        ttl         = "{{ nomad_vault_default_identity.ttl | default('1h') }}"
+        env         = {{ nomad_vault_default_identity.env | default(true) | to_json }}
+        file        = {{ nomad_vault_default_identity.file | default(false) | to_json }}
+        change_mode = "{{ nomad_vault_default_identity.change_mode | default('noop') }}"
+{% if nomad_vault_default_identity.change_signal is defined %}
+        change_signal = "{{ nomad_vault_default_identity.change_signal }}"
+{% endif %}
     }
 {% endif %}
 }
