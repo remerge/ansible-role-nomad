@@ -43,5 +43,14 @@ acl {
 vault {
     enabled = true
     address = "{{ nomad_vault_url }}"
+{% if nomad_vault_default_identity | length > 0 %}
+
+    default_identity {
+        aud  = {{ nomad_vault_default_identity.aud | to_json }}
+        ttl  = "{{ nomad_vault_default_identity.ttl | default('1h') }}"
+        env  = {{ nomad_vault_default_identity.env | default(true) | to_json }}
+        file = {{ nomad_vault_default_identity.file | default(false) | to_json }}
+    }
+{% endif %}
 }
 {% endif %}
