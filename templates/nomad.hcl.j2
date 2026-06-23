@@ -43,6 +43,9 @@ acl {
 vault {
     enabled = true
     address = "{{ nomad_vault_url }}"
+{% if nomad_vault_name | length > 0 %}
+    name    = "{{ nomad_vault_name }}"
+{% endif %}
 {% if nomad_vault_default_identity | length > 0 %}
 
     default_identity {
