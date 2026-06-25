@@ -24,6 +24,23 @@ nomad_acl_enabled: false
 nomad_vault_enabled: false
 nomad_vault_url: "http://vault.service.consul:8200"
 
+# Optional Nomad workload identity for Vault. When set, Nomad injects an
+# identity block into every task's `vault` block automatically, so tasks
+# exchange signed JWTs for Vault tokens via Vault's JWT auth method (no
+# legacy nomad-server-token needed).
+#
+# Example:
+#   nomad_vault_default_identity:
+#     aud: ["vault.{{ cluster }}"]   # per-cluster audience for Vault scoping
+#     ttl: "1h"
+#     env: true
+#     file: false
+#     change_mode: "noop"            # default; "restart" or "signal" also valid
+#     change_signal: "SIGHUP"        # only used when change_mode = "signal"
+#
+# Leave as an empty map to omit default_identity from the vault {} block.
+nomad_vault_default_identity: {}
+
 # Configuration for server nodes
 nomad_server: false
 nomad_server_bootstrap_expect: 1
