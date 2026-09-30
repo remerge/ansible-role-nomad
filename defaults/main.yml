@@ -51,6 +51,11 @@ nomad_client_node_class: worker
 nomad_client_host_volumes: []
 nomad_client_host_networks: []
 nomad_client_max_kill_timeout: 5m
+
+# Clients drain whenever the Nomad agent stops (host shutdown and
+# `systemctl restart nomad`) and become eligible again when it starts. The
+# deadline is in seconds and should exceed the largest task kill_timeout.
+nomad_client_drain_deadline: 600
 nomad_docker_auth_enabled: false
 nomad_docker_auth_file: /root/.docker/config.json
 
