@@ -29,7 +29,9 @@ telemetry {
 }
 
 leave_on_terminate = true
-leave_on_interrupt = false
+{# The packaged unit stops Nomad with SIGINT; drain_on_shutdown only runs when
+   the agent leaves. Servers must not leave the cluster on every restart. #}
+leave_on_interrupt = {{ 'true' if (nomad_client and not nomad_server) else 'false' }}
 
 {% if nomad_acl_enabled is sameas true %}
 acl {

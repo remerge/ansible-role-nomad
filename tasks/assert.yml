@@ -195,3 +195,13 @@
     quiet: true
   when:
     - nomad_docker_logging is defined
+
+- name: assert | Test if nomad_client_drain_deadline is set correctly
+  ansible.builtin.assert:
+    that:
+      - nomad_client_drain_deadline is defined
+      - nomad_client_drain_deadline is integer
+      - nomad_client_drain_deadline > 0
+    quiet: true
+  when:
+    - nomad_client
