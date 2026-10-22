@@ -59,6 +59,12 @@ nomad_client_drain_deadline: 600
 nomad_docker_auth_enabled: false
 nomad_docker_auth_file: /root/.docker/config.json
 
+# Whether the scheduler binpacks allocations onto as few nodes as possible, or
+# spreads them across the fleet. "binpack" is Nomad's own default. Note that
+# everything in default_scheduler_config, including this, is only consulted
+# when a cluster first bootstraps -- see the README.
+nomad_scheduler_algorithm: binpack
+
 nomad_batch_scheduler_enabled: true
 nomad_scheduler_enabled: true
 nomad_service_scheduler_enabled: true

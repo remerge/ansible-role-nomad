@@ -84,6 +84,29 @@ nomad_client_host_volumes: []
 nomad_client_host_networks: []
 ```
 
+## [Scheduler configuration](#scheduler-configuration)
+
+The role renders a `default_scheduler_config` block on servers, covering the
+placement algorithm (`nomad_scheduler_algorithm`, `binpack` or `spread`) and
+which schedulers may preempt (`nomad_scheduler_enabled`,
+`nomad_service_scheduler_enabled`, `nomad_batch_scheduler_enabled`,
+`nomad_sysbatch_scheduler_enabled`).
+
+**This block is only consulted while a cluster bootstraps.** Once a cluster
+has bootstrapped, Nomad keeps the scheduler configuration in Raft and ignores
+the file, so changing these variables and re-running the role has no effect on
+a running cluster — the values silently stay whatever they already were. Use
+the [update scheduler configuration API][api] for an existing cluster, via
+`nomad operator scheduler set-config` or the `nomad_scheduler_config`
+Terraform resource, and keep these variables in step so a future rebuild
+bootstraps the same way.
+
+An easy way to spot the divergence: compare `nomad operator scheduler
+get-config` against what the role would render. If they disagree, the API is
+what is in force.
+
+[api]: https://developer.hashicorp.com/nomad/api-docs/operator/scheduler
+
 ## [Drain on shutdown](#drain-on-shutdown)
 
 A client drains itself whenever the Nomad agent stops, on host shutdown and
