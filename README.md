@@ -84,6 +84,13 @@ nomad_client_host_volumes: []
 nomad_client_host_networks: []
 ```
 
+## [Docker image garbage collection](#docker-image-garbage-collection)
+
+The Docker driver removes an image `nomad_docker_gc_image_delay` (default
+`24h`) after the last task using it stopped. Nomad's own default of `3m` is
+shorter than the interval of most periodic jobs, so each run downloaded the
+full image again on every node.
+
 ## [Drain on shutdown](#drain-on-shutdown)
 
 A client drains itself whenever the Nomad agent stops, on host shutdown and
