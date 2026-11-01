@@ -58,6 +58,10 @@ nomad_client_max_kill_timeout: 5m
 nomad_client_drain_deadline: 600
 nomad_docker_auth_enabled: false
 nomad_docker_auth_file: /root/.docker/config.json
+# How long the Docker driver keeps an image after its last task stopped.
+# Nomad's own default of 3m makes periodic jobs download their full image on
+# every run; keep it above the longest periodic interval.
+nomad_docker_gc_image_delay: 24h
 
 nomad_batch_scheduler_enabled: true
 nomad_scheduler_enabled: true

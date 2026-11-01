@@ -75,6 +75,10 @@ plugin "docker" {
       "node_id",
     ]
 
+    gc {
+      image_delay = "{{ nomad_docker_gc_image_delay }}"
+    }
+
     allow_privileged = true
     volumes {
       enabled = true

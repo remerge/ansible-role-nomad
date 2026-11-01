@@ -196,6 +196,16 @@
   when:
     - nomad_docker_logging is defined
 
+- name: assert | Test if nomad_docker_gc_image_delay is set correctly
+  ansible.builtin.assert:
+    that:
+      - nomad_docker_gc_image_delay is defined
+      - nomad_docker_gc_image_delay is string
+      - nomad_docker_gc_image_delay is match('^([0-9]+(ns|us|ms|s|m|h))+$')
+    quiet: true
+  when:
+    - nomad_client
+
 - name: assert | Test if nomad_client_drain_deadline is set correctly
   ansible.builtin.assert:
     that:
