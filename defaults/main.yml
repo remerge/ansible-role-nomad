@@ -63,6 +63,12 @@ nomad_docker_auth_file: /root/.docker/config.json
 # every run; keep it above the longest periodic interval.
 nomad_docker_gc_image_delay: 24h
 
+# How the scheduler places allocations across eligible nodes. "binpack" fills
+# as few nodes as possible, which suits a fleet that scales in and out;
+# "spread" distributes evenly. Our node count is static, so spread is the
+# better fit. Only applied when a cluster bootstraps, see server.hcl.j2.
+nomad_scheduler_algorithm: spread
+
 nomad_batch_scheduler_enabled: true
 nomad_scheduler_enabled: true
 nomad_service_scheduler_enabled: true

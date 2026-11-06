@@ -73,6 +73,23 @@ nomad_acl_enabled: false
 nomad_vault_enabled: false
 nomad_vault_url: "http://vault.service.consul:8200"
 
+# Optional Nomad workload identity for Vault. When set, Nomad injects an
+# identity block into every task's `vault` block automatically, so tasks
+# exchange signed JWTs for Vault tokens via Vault's JWT auth method (no
+# legacy nomad-server-token needed).
+#
+# Example:
+#   nomad_vault_default_identity:
+#     aud: ["vault.{{ cluster }}"]   # per-cluster audience for Vault scoping
+#     ttl: "1h"
+#     env: true
+#     file: false
+#     change_mode: "noop"            # default; "restart" or "signal" also valid
+#     change_signal: "SIGHUP"        # only used when change_mode = "signal"
+#
+# Leave as an empty map to omit default_identity from the vault {} block.
+nomad_vault_default_identity: {}
+
 # Configuration for server nodes
 nomad_server: false
 nomad_server_bootstrap_expect: 1
@@ -82,6 +99,29 @@ nomad_client: false
 nomad_client_node_class: worker
 nomad_client_host_volumes: []
 nomad_client_host_networks: []
+nomad_client_max_kill_timeout: 5m
+
+# Clients drain whenever the Nomad agent stops (host shutdown and
+# `systemctl restart nomad`) and become eligible again when it starts. The
+# deadline is in seconds and should exceed the largest task kill_timeout.
+nomad_client_drain_deadline: 600
+nomad_docker_auth_enabled: false
+nomad_docker_auth_file: /root/.docker/config.json
+# How long the Docker driver keeps an image after its last task stopped.
+# Nomad's own default of 3m makes periodic jobs download their full image on
+# every run; keep it above the longest periodic interval.
+nomad_docker_gc_image_delay: 24h
+
+# How the scheduler places allocations across eligible nodes. "binpack" fills
+# as few nodes as possible, which suits a fleet that scales in and out;
+# "spread" distributes evenly. Our node count is static, so spread is the
+# better fit. Only applied when a cluster bootstraps, see server.hcl.j2.
+nomad_scheduler_algorithm: spread
+
+nomad_batch_scheduler_enabled: true
+nomad_scheduler_enabled: true
+nomad_service_scheduler_enabled: true
+nomad_sysbatch_scheduler_enabled: true
 ```
 
 ## [Docker image garbage collection](#docker-image-garbage-collection)
