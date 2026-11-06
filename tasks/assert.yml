@@ -107,6 +107,14 @@
       - nomad_client is boolean
     quiet: true
 
+- name: assert | Test if nomad_scheduler_algorithm is set correctly
+  ansible.builtin.assert:
+    that:
+      - nomad_scheduler_algorithm is defined
+      - nomad_scheduler_algorithm is string
+      - nomad_scheduler_algorithm in [ "binpack", "spread" ]
+    quiet: true
+
 - name: assert | Test if nomad_sysbatch_scheduler_enabled is set correctly
   ansible.builtin.assert:
     that:
