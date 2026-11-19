@@ -100,11 +100,6 @@ nomad_client_node_class: worker
 nomad_client_host_volumes: []
 nomad_client_host_networks: []
 nomad_client_max_kill_timeout: 5m
-
-# Clients drain whenever the Nomad agent stops (host shutdown and
-# `systemctl restart nomad`) and become eligible again when it starts. The
-# deadline is in seconds and should exceed the largest task kill_timeout.
-nomad_client_drain_deadline: 600
 nomad_docker_auth_enabled: false
 nomad_docker_auth_file: /root/.docker/config.json
 # How long the Docker driver keeps an image after its last task stopped.
@@ -131,14 +126,9 @@ The Docker driver removes an image `nomad_docker_gc_image_delay` (default
 shorter than the interval of most periodic jobs, so each run downloaded the
 full image again on every node.
 
-## [Drain on shutdown](#drain-on-shutdown)
+## [No drain on restart](#no-drain-on-restart)
 
-A client drains itself whenever the Nomad agent stops, on host shutdown and
-on `systemctl restart nomad` alike, using Nomad's `drain_on_shutdown`
-(deadline `nomad_client_drain_deadline` seconds). `nomad.service` stops
-before Docker and Consul, and its stop timeout covers the deadline.
-
-Nomad leaves a drained node ineligible. An `ExecStartPost` in the unit
-override makes it eligible again with the node's own secret ID, so no ACL
-token is needed. This also re-enables a node that was marked ineligible by
-hand before the restart.
+Stopping or restarting the Nomad agent never drains a client, and allocations
+keep running while the agent is down. Drain a node explicitly before work that
+stops its allocations, such as upgrades and reboots, and make it eligible again
+afterwards.
